@@ -9,12 +9,27 @@ public class SpellingBee {
     private char[] letters;
     private char mustUse;
 
-    // TODO construct me!
-
-    public boolean checkWord(String word) {
-        // TODO implement me!
-        return true;
+    public SpellingBee(char[] letters, char mustUse){
+        this.letters = letters;
+        this.mustUse = mustUse;
     }
+
+    public boolean checkLetter(char letter){
+        
+    }
+
+/* 
+    public boolean checkWord(String word) {
+        if(word.length() > 3 && )
+        char curChar = word.charAt(word.length()-1);
+        while(curChar >=0){
+
+        }
+        return true;
+
+        //for loop, length down to 0
+        //if char at that index is 
+    } */
 
     /**
      * Loads the contents of file "filename" as a String.
