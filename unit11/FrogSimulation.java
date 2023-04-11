@@ -54,8 +54,21 @@ public class FrogSimulation {
      * false otherwise.
      */
     public boolean simulate() {
-        /* to be implemented in part (a) */
-        return false; // replace me!
+        // simulate the frog hopoung if not passed/reached goal, negative position
+        // reached, or max number of hops has been reached
+        int sum = 0;
+        int hops = 0;
+        while (sum >= 0 && hops != maxHops && sum < goalDistance) {
+            sum += hopDistance();
+            ++hops;
+        }
+        
+        if (sum >= goalDistance) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /**
@@ -65,8 +78,18 @@ public class FrogSimulation {
      * Precondition: num > 0
      */
     public double runSimulations(int num) {
-        /* to be implemented in part (b) */
-        return -1; // replace me!
+        double tru = 0;
+       
+
+        for (int i = num; i >= 0; i--) {
+            boolean test = simulate();
+            if (test) {
+                ++tru;
+            }
+
+        }
+
+        return tru / num;
     }
 
     public static void check(boolean test) throws AssertionError {
@@ -75,6 +98,7 @@ public class FrogSimulation {
     }
 
     public static void main(String[] args) {
+
         FrogSimulation sim = new FrogSimulation(24, 5);
         sim.setHops(new int[] { 5, 7, -2, 8, 6 });
         check(sim.simulate() == true);
@@ -101,5 +125,6 @@ public class FrogSimulation {
         check(sim._leapCount() <= 400 * 5 && sim._leapCount() > 400);
 
         System.out.println("Happy Panda! \uD83D\uDC3C");
+
     }
 }
