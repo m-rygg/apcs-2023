@@ -20,9 +20,9 @@ public class SpellingBee {
 
         if (word.length() > 3) {
             int i = 0;
-            while (i != word.length() && rightLetter == true) {
-                rightLetter = false;
-                for (int j = 0; j < letters.length; j++) {
+            while (i != word.length() && rightLetter == true) { //loops through each char of word
+                rightLetter = false; //remains false if there isn't a match between one of the chars in letters[]
+                for (int j = 0; j < letters.length; j++) { 
                     if (word.charAt(i) == letters[j]) {
                         rightLetter = true;
                     }

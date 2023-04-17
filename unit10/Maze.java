@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Maze {
-    private boolean solution;
+    private boolean solution = false;
     private char[][] maze;
 
     /**
@@ -15,7 +15,14 @@ public class Maze {
      * @param line the values to be placed in the maze.
      */
     public Maze(int rows, int cols, String line) {
-        // TODO part a
+        this.maze = new char[rows][cols];
+
+        for(int r = 0; r < rows; r++){
+            for(int c = 0; c <cols; c++){
+                maze[r][c] = line.charAt(r*rows + c);
+            }
+        }
+
 
     }
 
@@ -35,6 +42,63 @@ public class Maze {
         return "" + z / maze[0].length + " " + z % maze[0].length;
     }
 
+    public int[] parseCoord(String coord) {
+        String[] strArray = coord.split(" ");
+        int[] intArray = new int[2];
+        intArray[0] = Integer.parseInt(strArray[0]);
+        intArray[1] = Integer.parseInt(strArray[1]);
+        return intArray;
+    }
+
+    public boolean canTravelTo(int r, int c){ //
+        if((r<maze.length && r>=0 && c>=0 && c<maze[0].length) && (maze[r][c] != '#') && (maze[r][c] != 'c')){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private void explore(int r, int c){
+
+        //check in bounds, not checked, not equal to wall
+        //set checked by setting the point equal to c
+        //check if solution not found
+        //if getend true solution = true
+        //if good.. mazerc = 'c'
+        //check rightupleftdown
+        
+       
+        
+            if(maze[r][c] == '$'){
+                solution = true;
+            }
+            else if(canTravelTo(r,c)){
+            
+                maze[r][c] = 'c';
+                if(canTravelTo(r-1,c)){
+                explore(r-1,c);
+                }
+                if(canTravelTo(r+1,c)){
+                    explore(r+1,c);
+                }
+                if(canTravelTo(r,c+1)){
+                    explore(r,c+1);
+                }
+                if(canTravelTo(r,c-1)){
+                    explore(r,c-1);
+                }
+                //maze[r][c] = '.';
+            }
+            
+        }
+        
+        
+
+        
+
+        
+
     /**
      * Uses recursion to see if the maze has a solution or not.
      * 
@@ -52,19 +116,21 @@ public class Maze {
      * @param r current row index
      * @param c current column index
      */
-    private void check(int r, int c) {
-        // TODO part b
-
-    }
-
+    /*
+     * private void check(int r, int c) {
+     * // canTravelTo();
+     * 
+     * }
+     * 
+     */
     /**
      * Determines if there is a solution (a path of '.') for this maze.
      * 
      * @return true if the maze has a path from Start (@) to End ($).
      */
     public boolean hasSolution() {
-        // TODO part c
-        return false; // replace me!
+        explore(parseCoord(getStart())[0],parseCoord(getStart())[1]);
+        return solution; // replace me!
 
     }
 

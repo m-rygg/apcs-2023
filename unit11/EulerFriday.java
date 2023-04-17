@@ -46,6 +46,24 @@ public class EulerFriday {
             }
         }
 
+        System.out.println(factor);
+
+        //4
+        int largestPal = 0;
+        for(i = 100; i<=999; i++){
+            for(int o = 100; o <= 99; o++){
+                int product = i*o;
+                if(Recur.pot(productString)){
+                    if(product>largestPal){
+                        largestPal = product;
+                    }
+                }
+            }
+
+        }
+
+        System.out.println(largestPal);
+
     }
 
     static int[] prob8scaffold() {

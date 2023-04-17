@@ -8,7 +8,28 @@ import java.util.List;
 // https://secure-media.collegeboard.org/digitalServices/pdf/ap/ap16_frq_computer_science_a.pdf#page=2
 
 public class RandomStringChooser {
-    // TODO part a
+
+    String[] stringArr;
+    ArrayList<String> stringList = new ArrayList<String>();
+
+    public RandomStringChooser(String[] stringArr){
+        this.stringArr = stringArr;
+        for(int i = 0; i<stringArr.length; i++){
+            stringList.add(stringArr[i]);
+        }
+    }
+
+    public String getNext(){
+        if(stringList.isEmpty()){
+            return "NONE";
+        }
+        else{
+            int index = (int) Math.random() * stringList.size();
+            String result = stringList.get(index);
+            stringList.remove(index);
+            return result;
+        }
+    }
 
     static void check(boolean test) throws AssertionError {
         if (!test)
@@ -17,16 +38,16 @@ public class RandomStringChooser {
 
     public static void main(String[] args) {
         // Uncomment the following lines to test your code: select and Ctrl+/
-        // String[] wordArray = { "wheels", "on", "the", "bus" };
-        // RandomStringChooser sChooser = new RandomStringChooser(wordArray);
-        // for (int k = 0; k < 6; k++) {
-        // String next = sChooser.getNext();
-        // System.out.print(next + " ");
-        // if (k < 4)
-        // check(Arrays.stream(wordArray).anyMatch(next::equals));
-        // else
-        // check(next.equals("NONE"));
-
+         String[] wordArray = { "wheels", "on", "the", "bus" };
+         RandomStringChooser sChooser = new RandomStringChooser(wordArray);
+         /*for (int k = 0; k < 6; k++) {
+         String next = sChooser.getNext();
+         System.out.print(next + " ");
+         if (k < 4)
+         check(Arrays.stream(wordArray).anyMatch(next::equals));
+         else
+         check(next.equals("NONE"));
+*/
         // }
         // System.out.println();
 
@@ -41,7 +62,7 @@ public class RandomStringChooser {
         // check(next.equals("NONE"));
         // }
         // System.out.println();
-        // System.out.println("Happy Panda! \uD83D\uDC3C");
+         System.out.println("Happy Panda! \uD83D\uDC3C");
     }
 }
 
