@@ -43,13 +43,30 @@ public class ClubMembers {
     }
 
     public void addMembers(String[] names, int gradYear) {
-        // TODO a
+        for(int i = 0; i<names.length; i++){
+            MemberInfo mem = new MemberInfo(names[i], gradYear, true);
+            members.add(mem);
+        }
 
     }
 
     public ArrayList<MemberInfo> removeMembers(int year) {
         // TODO b;
-        return null; // replace me
+        ArrayList<MemberInfo> gradGoodMembers = new ArrayList<MemberInfo>();
+        int i = 0;
+        while(i<members.size()){
+            if(members.get(i).getGradYear() <= year){
+                if(members.get(i).inGoodStanding()){
+                    gradGoodMembers.add(members.get(i));
+                }
+                members.remove(i);
+            }
+            else{
+                i++;
+            }
+
+        }
+        return gradGoodMembers;
     }
 
     public static void check(boolean test) throws AssertionError {
@@ -84,6 +101,7 @@ public class ClubMembers {
         check(cm.members.size() == 2);
         check(cm.members.contains(folks[0]));
         check(cm.members.contains(folks[3]));
+        
         System.out.println("Happy Panda! \uD83D\uDC3C");
 
     }
