@@ -13,8 +13,14 @@ public class StringFormatter {
      * only.
      */
     public static int totalLetters(List<String> wordList) {
-        // TODO part (a)
-        return -1; // replace me!
+        int sum = 0;
+        for(int i = 0; i<wordList.size(); i++){
+            sum+=wordList.get(i).length()
+            for(int c = 0; c<wordList.get(i).length(); c++){
+
+            }
+        }
+        return sum; // replace me!
     }
 
     /**
@@ -38,6 +44,7 @@ public class StringFormatter {
      * formattedLen is large enough for all the words and gaps.
      * Postcondition: All words in wordList appear in the formatted string.
      * - The words appear in the same order as in wordList.
+     * 
      * - The number of spaces between words is determined by basicGapWidth and the
      * distribution of leftoverSpaces from left to right, as described in the
      * question.

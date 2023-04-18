@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 class WordPair {
 
@@ -32,7 +33,7 @@ class WordPair {
 
 public class WordPairList {
     /** The list of word pairs, initialized by the constructor. */
-    private ArrayList<WordPair> allPairs;
+    private ArrayList<WordPair> allPairs = new ArrayList<WordPair>();
 
     /**
      * Constructs a WordPairList object as described in part (a).
@@ -40,14 +41,29 @@ public class WordPairList {
      */
     public WordPairList(String[] words) {
         /* to be implemented in part (a) */
+        allPairs = new ArrayList<WordPair>();
+        int i = 0;
+        while(i != words.length){
+            for(int j = i+1; j<words.length; j++){
+                //else put new wordpair
+                allPairs.add(new WordPair(words[i], words[j]));
+            }
+            i++;
+        }
     }
 
     /**
      * Returns the number of matches as described in part (b).
      */
     public int numMatches() {
-        /* to be implemented in part (b) */
-        return -1; // replace me!
+        int total = 0;
+        for(int i = 0; i<allPairs.size(); i++){
+            if(allPairs.get(i).getFirst().equals(allPairs.get(i).getSecond())){
+                total++;
+            }
+        } 
+    
+        return total; // replace me!
     }
 
     public static void check(boolean test) throws AssertionError {
@@ -69,6 +85,8 @@ public class WordPairList {
     public static void main(String[] args) {
         String[] wordNums = { "one", "two", "three" };
         WordPairList exampleOne = new WordPairList(wordNums);
+        
+        
         checkWordPairList(wordNums, exampleOne, 3);
 
         String[] phrase = { "the", "more", "the", "merrier" };
@@ -79,6 +97,7 @@ public class WordPairList {
         WordPairList exampleThree = new WordPairList(moreWords);
         checkWordPairList(moreWords, exampleThree, 10);
         check(exampleThree.numMatches() == 2);
+        
 
         System.out.println("Happy Panda! \uD83D\uDC3C");
     }
