@@ -9,6 +9,7 @@ public class LightBoard {
      * The lights on the board, where true represents on and false represents off.
      */
     private boolean[][] lights;
+    public int trouble = 0;
 
     /**
      * Constructs a LightBoard object having numRows rows and numCols columns.
@@ -16,12 +17,12 @@ public class LightBoard {
      * Postcondition: each light has a 40% probability of being set to on.
      */
     public LightBoard(int numRows, int numCols) {
-        int d10;
+        double d10;
         lights = new boolean[numRows][numCols];
         for(int r = 0; r<numRows; r++){
             for(int c = 0; c<numCols; c++){
-                d10 = (int) Math.random() * 9;
-                if(d10<=3){
+                d10 = Math.random();
+                if(d10<=0.4){
                     lights[r][c] = true;
                 }
                 else{
@@ -38,26 +39,30 @@ public class LightBoard {
      */
     public boolean evaluateLight(int row, int col) {
         int lightsInColThatAreOn = 0;
-        for(int i = 0; i<row; i++){
+        for(int i = 0; i<lights.length; i++){
             if(lights[i][col]){
                 lightsInColThatAreOn++;
             }
         }
-        if(lights[row][col]){
+        trouble = lightsInColThatAreOn;
+        if(lights[row][col] && lightsInColThatAreOn % 2 == 0){
             
-            if(lightsInColThatAreOn % 2 == 0){
+                
+            
                 return false;
-            }
+                
+            
             
         }
-        else if(!lights[row][col]){
+        else if(!lights[row][col] && lightsInColThatAreOn % 3 == 0){
             
-            if(lightsInColThatAreOn % 3 == 0){
-                return true;
-            }
+            return true;
+            
         }
         else{
+           
             return lights[row][col];
+            
         }
 
     }
@@ -72,6 +77,10 @@ public class LightBoard {
     public static void check(boolean test) throws AssertionError {
         if (!test)
             throw new AssertionError("bad panda");
+    }
+
+    public int getTrouble(){
+        return trouble;
     }
 
     public static void main(String[] args) {
@@ -94,6 +103,7 @@ public class LightBoard {
         check(!partB.evaluateLight(0, 3));
         check(partB.evaluateLight(6, 0));
         check(!partB.evaluateLight(4, 1));
+        partB.evaluateLight(5, 4);
         check(partB.evaluateLight(5, 4));
         System.out.println("Happy Panda! \uD83D\uDC3C");
 
