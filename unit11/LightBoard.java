@@ -49,7 +49,6 @@ public class LightBoard {
                 return false;
             }
             
-
         }
         else if(!lights[row][col]){
             
