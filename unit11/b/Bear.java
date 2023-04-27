@@ -4,7 +4,7 @@ package unit11.b;
 // to do
 // wip - lightboard
 //solve project euler #11 OR #13
-//complete Crossword.java FRQ
+
 
 //need to 
 public class Bear {
