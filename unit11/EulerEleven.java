@@ -1,17 +1,19 @@
 package unit11;
+
 import java.io.File;
 import java.lang.Object;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.lang.Integer;
 
-public class EulerEleven{
+public class EulerEleven {
 
     int[][] grid = new int[20][20];
-    //int large = Integer.MIN_VALUE;
+    // int large = Integer.MIN_VALUE;
     int large = 0;
-    public EulerEleven(){
-        
+
+    public EulerEleven() {
+
         String[][] stringGrid = new String[20][20];
         stringGrid[0] = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08".split(" ");
         stringGrid[1] = "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00".split(" ");
@@ -33,146 +35,142 @@ public class EulerEleven{
         stringGrid[17] = "20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16".split(" ");
         stringGrid[18] = "20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54".split(" ");
         stringGrid[19] = "01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48".split(" ");
-        for(int r = 0; r<20; r++){
-            for(int c = 0; c<20; c++){
+        for (int r = 0; r < 20; r++) {
+            for (int c = 0; c < 20; c++) {
                 grid[r][c] = Integer.parseInt(stringGrid[r][c]);
             }
         }
 
     }
 
-        public boolean canGoN(int r, int c){
-            if((c>=0 && c<20) && (r>=0 && r<20) && (r-1>=0 && r-1<20) && (r-2>=0 && r-2<20) && (r-3>=0 && r-3<20)){
-                return true;
-            }
-            else{
-                return false;
+    public boolean canGoN(int r, int c) {
+        if ((c >= 0 && c < 20) && (r >= 0 && r < 20) && (r - 1 >= 0 && r - 1 < 20) && (r - 2 >= 0 && r - 2 < 20)
+                && (r - 3 >= 0 && r - 3 < 20)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoS(int r, int c) {
+        if ((c >= 0 && c < 20) && (r >= 0 && r < 20) && (r + 1 >= 0 && r + 1 < 20) && (r + 2 >= 0 && r + 2 < 20)
+                && (r + 3 >= 0 && r + 3 < 20)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoE(int r, int c) {
+
+        if ((c >= 0 && c < 20) && (r >= 0 && r < 20) && (c + 1 >= 0 && c + 1 < 20) && (c + 2 >= 0 && c + 2 < 20)
+                && (c + 3 >= 0 && c + 3 < 20)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoW(int r, int c) {
+        if ((c >= 0 && c < 20) && (r >= 0 && r < 20) && (c - 1 >= 0 && c - 1 < 20) && (c - 2 >= 0 && c - 2 < 20)
+                && (c - 3 >= 0 && c - 3 < 20)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoNW(int r, int c) {
+        if (canGoN(r, c) && canGoW(r, c)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoNE(int r, int c) {
+        if (canGoN(r, c) && canGoE(r, c)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoSE(int r, int c) {
+        if (canGoS(r, c) && canGoE(r, c)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canGoSW(int r, int c) {
+        if (canGoS(r, c) && canGoW(r, c)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void runAllDirections(int r, int c) {
+        // checks if canMultiply for every direction, multiplies, then compares with
+        // largest product
+       
+        if (canGoN(r, c)) {
+            if ((grid[r][c] * grid[r - 1][c] * grid[r - 2][c] * grid[r - 3][c]) > large) {
+                large = (grid[r][c] * grid[r - 1][c] * grid[r - 2][c] * grid[r - 3][c]);
             }
         }
-
-        public boolean canGoS(int r, int c){
-            if((c>=0 && c<20) && (r>=0 && r<20) && (r+1>=0 && r+1<20) && (r+2>=0 && r+2<20) && (r+3>=0 && r+3<20)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoS(r, c)) {
+            if ((grid[r][c] * grid[r + 1][c] * grid[r + 2][c] * grid[r + 3][c]) > large) {
+                large = (grid[r][c] * grid[r + 1][c] * grid[r + 2][c] * grid[r + 3][c]);
             }
         }
-
-        public boolean canGoE(int r, int c){
-            
-            if((c>=0 && c<20) && (r>=0 && r<20) && (c+1>=0 && c+1<20) && (c+2>=0 && c+2<20) && (c+3>=0 && c+3<20)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoE(r, c)) {
+            if ((grid[r][c] * grid[r][c + 1] * grid[r][c + 2] * grid[r][c + 3]) > large) {
+                large = (grid[r][c] * grid[r][c + 1] * grid[r][c + 2] * grid[r][c + 3]);
             }
         }
-
-        public boolean canGoW(int r, int c){
-            if((c>=0 && c<20) && (r>=0 && r<20) && (c-1>=0 && c-1<20) && (c-2>=0 && c-2<20) && (c-3>=0 && c-3<20)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoW(r, c)) {
+            if ((grid[r][c] * grid[r][c - 1] * grid[r][c - 2] * grid[r][c - 3]) > large) {
+                large = (grid[r][c] * grid[r][c - 1] * grid[r][c - 2] * grid[r][c - 3]);
             }
         }
-
-        public boolean canGoNW(int r, int c){
-            if(canGoN(r,c) && canGoW(r,c)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoNW(r, c)) {
+            if ((grid[r][c] * grid[r - 1][c - 1] * grid[r - 2][c - 2] * grid[r - 3][c - 3]) > large) {
+                large = (grid[r][c] * grid[r - 1][c - 1] * grid[r - 2][c - 2] * grid[r - 3][c - 3]);
             }
         }
-
-        public boolean canGoNE(int r, int c){
-            if(canGoN(r,c) && canGoE(r,c)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoNE(r, c)) {
+            if ((grid[r][c] * grid[r - 1][c + 1] * grid[r - 2][c + 2] * grid[r - 3][c + 3]) > large) {
+                large = (grid[r][c] * grid[r - 1][c + 1] * grid[r - 2][c + 2] * grid[r - 3][c + 3]);
             }
         }
-
-        public boolean canGoSE(int r, int c){
-            if(canGoS(r,c) && canGoE(r,c)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoSE(r, c)) {
+            if ((grid[r][c] * grid[r + 1][c + 1] * grid[r + 2][c + 2] * grid[r + 3][c + 3]) > large) {
+                large = (grid[r][c] * grid[r + 1][c + 1] * grid[r + 2][c + 2] * grid[r + 3][c + 3]);
             }
         }
-
-        public boolean canGoSW(int r, int c){
-            if(canGoS(r,c) && canGoW(r,c)){
-                return true;
-            }
-            else{
-                return false;
+        if (canGoSW(r, c)) {
+            if ((grid[r][c] * grid[r + 1][c - 1] * grid[r + 2][c - 2] * grid[r + 3][c - 3]) > large) {
+                large = (grid[r][c] * grid[r + 1][c - 1] * grid[r + 2][c - 2] * grid[r + 3][c - 3]);
             }
         }
+    }
 
-        public void runAllDirections(int r, int c){
-            //checks if canMultiply for every direction, multiplies, then compares with largest product
-            int num;
-            if(canGoN(r,c)){
-                if((grid[r][c] * grid[r-1][c] * grid[r-2][c] * grid[r-3][c]) > large){
-                    large = (grid[r][c] * grid[r-1][c] * grid[r-2][c] * grid[r-3][c]);
-                }
-            }
-            if(canGoS(r,c)){
-                if((grid[r][c] * grid[r+1][c] * grid[r+2][c] * grid[r+3][c]) > large){
-                    large = (grid[r][c] * grid[r+1][c] * grid[r+2][c] * grid[r+3][c]);
-                }
-            }
-            if(canGoE(r,c)){
-                if((grid[r][c] * grid[r][c+1] * grid[r][c+2] * grid[r][c+3]) > large){
-                    large = (grid[r][c] * grid[r][c+1] * grid[r][c+2] * grid[r][c+3]);
-                }
-            }
-            if(canGoW(r,c)){
-                if((grid[r][c] * grid[r][c-1] * grid[r][c-2] * grid[r][c-3]) > large){
-                    large = (grid[r][c] * grid[r][c-1] * grid[r][c-2] * grid[r][c-3]);
-                }
-            }
-            if(canGoNW(r,c)){
-                if((grid[r][c] * grid[r-1][c-1] * grid[r-2][c-2] * grid[r-3][c-3]) > large){
-                    large = (grid[r][c] * grid[r-1][c-1] * grid[r-2][c-2] * grid[r-3][c-3]);
-                }
-            }
-            if(canGoNE(r,c)){
-                if((grid[r][c] * grid[r-1][c+1] * grid[r-2][c+2] * grid[r-3][c+3]) > large){
-                    large = (grid[r][c] * grid[r-1][c+1] * grid[r-2][c+2] * grid[r-3][c+3]);
-                }
-            }
-            if(canGoSE(r,c)){
-                if((grid[r][c] * grid[r+1][c+1] * grid[r+2][c+2] * grid[r+3][c+3]) > large){
-                    large = (grid[r][c] * grid[r+1][c+1] * grid[r+2][c+2] * grid[r+3][c+3]);
-                }
-            }
-            if(canGoSW(r,c)){
-                if((grid[r][c] * grid[r+1][c-1] * grid[r+2][c-2] * grid[r+3][c-3]) > large){
-                    large = (grid[r][c] * grid[r+1][c-1] * grid[r+2][c-2] * grid[r+3][c-3]);
-                }
+    public int loopThroughGrid() {
+        for (int r = 0; r < 20; r++) {
+            for (int c = 0; c < 20; c++) {
+                runAllDirections(r, c);
             }
         }
+        return large;
+    }
 
-        public int loopThroughGrid(){
-            for(int r = 0; r<20; r++){
-                for(int c = 0; c<20; c++){
-                    runAllDirections(r,c);
-                }
-            }
-            return large;
-        }
-
-    
     public static void main(String[] args) {
         EulerEleven run = new EulerEleven();
-        
+
         System.out.println(run.loopThroughGrid());
     }
-    
+
 }
