@@ -22,6 +22,15 @@ public class Data {
      */
     public void repopulate() {
         /* TODO to be implemented in part (a) */
+        for(int r = 0; r<grid.length; r++){
+            for(int c = 0; c<grid[0].length; c++){
+                int num = 2;
+                    while(num % 10 != 0 || num % 100 == 0){
+                        num = (int) (Math.random() *  (Integer.MAX_VALUE)) + 1;
+                    }
+                grid[r][c] = num;
+            }
+        }
 
     }
 
