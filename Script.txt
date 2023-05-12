@@ -1,0 +1,18 @@
+using UnityEngine; 
+using UnityEngine.SceneManagement; 
+using System.Collections;
+
+public class Birdie : MonoBehaviour {
+
+// initialized at start
+    void Start () {    
+        
+    }
+   
+    // called once per frame
+    void Update () {
+        
+
+}
+
+}
