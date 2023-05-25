@@ -10,10 +10,15 @@ public class HelloSpark {
         staticFiles.location("/public");
         staticFiles.expireTime(600L);
 
+
+
         System.out.println("Hello, Spark!");
         get("/hello", (req, res) -> "Hello, Beep!");
 
         get("/hello/:name", HelloSpark.serveIndexPage);
+
+
+        
     }
 
     public static Route serveIndexPage = (Request request, Response response) -> {
