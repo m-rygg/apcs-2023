@@ -11,7 +11,7 @@ public class HelloSpark {
         staticFiles.expireTime(600L);
 
         System.out.println("Hello, Spark!");
-        get("/hello", (req, res) -> "Hello, Spark!");
+        get("/hello", (req, res) -> "Hello, Beep!");
 
         get("/hello/:name", HelloSpark.serveIndexPage);
     }
