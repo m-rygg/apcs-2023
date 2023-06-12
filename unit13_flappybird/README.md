@@ -31,8 +31,10 @@ The most difficult part was learning to work with Unity's physics engine to loop
 
 ## How you can try it
 
-1. Right click the birbb folder and download.
-2. Open the folder in your file explorer and launch the "birb" application
+1. Go to https://m-rygg.itch.io/flappy-birb
+2. Download the zipped folder
+3. Unzip the folder
+4. Run birb.exe
 
 ## Why this is cool
 
