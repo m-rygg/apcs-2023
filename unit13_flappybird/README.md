@@ -36,4 +36,4 @@ The most difficult part was learning to work with Unity's physics engine to loop
 
 ## Why this is cool
 
-Building this mini game helped me learn how to use Unity to create games. In the future, I can apply/expand on what I learned and create more video game projects.
+Building this mini game helped me learn how to use Unity to create games. In the future, I can apply/expand on what I learned and create more video game projects. 

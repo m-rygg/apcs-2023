@@ -31,7 +31,7 @@ public class BirdMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D ob) {
       // Restart the game
       if(ob.gameObject.tag != "beep")
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+          SceneManager.LoadScene(0);
     }
     //Collision2D coll
 }
